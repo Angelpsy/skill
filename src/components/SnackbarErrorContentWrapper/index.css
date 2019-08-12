@@ -1,0 +1,13 @@
+.b-snackbar-error-content-wrapper {
+
+}
+
+.b-snackbar-error-content-wrapper__message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.b-snackbar-error-content-wrapper__icon {
+    margin-right: 5px;
+}
