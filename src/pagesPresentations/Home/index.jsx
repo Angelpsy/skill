@@ -6,6 +6,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarErrorContentWrapper from '../../components/SnackbarErrorContentWrapper';
 import Skills from '../../components/Skills';
+import Grid from '@material-ui/core/Grid';
 
 class HomePresentation extends Component {
     constructor(props) {
@@ -33,34 +34,38 @@ class HomePresentation extends Component {
     render() {
         return (
             <View className="p-home" title="Home">
+                {this.props.isLoading &&
+                    <LinearProgress color="primary" className="p-home__loader"/>
+                }
                 <Container>
-                    { this.props.isLoading &&
-                    <LinearProgress color="secondary" className="p-home__loader" />
-                    }
-                    {
-                        this.props.isError &&
-                        <Snackbar
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            open={this.state.isOpenError}
-                            onClose={this.closeError}
-                            className="p-home__error"
-                        >
-                            <SnackbarErrorContentWrapper
+                    <Grid container justify="center">
+                        {
+                            this.props.isError &&
+                            <Snackbar
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                                open={this.state.isOpenError}
                                 onClose={this.closeError}
-                                message={this.props.errorMessage}
-                            />
-                        </Snackbar>
-                    }
-                    {
-                        this.props.isItems &&
-                            <Skills
-                                items={this.props.items}
-                                className="p-home__skills"
-                            />
-                    }
+                                className="p-home__error"
+                            >
+                                <SnackbarErrorContentWrapper
+                                    onClose={this.closeError}
+                                    message={this.props.errorMessage}
+                                />
+                            </Snackbar>
+                        }
+                        {
+                            this.props.isItems &&
+                            <Grid item sm={6}>
+                                <Skills
+                                    items={this.props.items}
+                                    className="p-home__skills"
+                                />
+                            </Grid>
+                        }
+                    </Grid>
                 </Container>
             </View>
         );

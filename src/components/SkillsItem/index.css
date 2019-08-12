@@ -1,0 +1,7 @@
+.b-skills-item {}
+
+.b-skills-item__link {
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
